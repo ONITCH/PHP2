@@ -8,6 +8,7 @@ require_once('board_read.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>旅先情報収集ボード</title>
+    <link rel="stylesheet" type="text/css" href="./board.css" />
 </head>
 
 <body>
@@ -35,7 +36,7 @@ require_once('board_read.php');
         </table>
     </div>
 
-<script> </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </body>
 
