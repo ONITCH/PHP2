@@ -34,6 +34,8 @@ foreach($result as $record){
     $output .= "
     <tr>
         <td>{$record["your_name"]}</td>
+        <td>{$record["country"]}</td>
+        <td>{$record["genre"]}</td>
         <td>{$record["comments"]}</td>
         <td>{$record["created_at"]}</td>
     </tr>
