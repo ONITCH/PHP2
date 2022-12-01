@@ -1,6 +1,12 @@
 <?php
-require_once('board_read.php');
+
+// var_dump($_POST);
+// exit();
+
+require('board_read.php');
+
 ?>
+
 
 
 <!DOCTYPE html>
@@ -53,7 +59,7 @@ require_once('board_read.php');
         </fieldset>
     </form>
     <div>ワード検索
-        <form action="board_search.php" method="POST"></form>
+        <form action="board_search.php" method="POST">
             <input type="text" name="search_word">
             <input type="submit" name="submit" value="送信">
         </form>
