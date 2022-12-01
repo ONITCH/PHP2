@@ -1,15 +1,3 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>検索結果</title>
-</head>
-<body>
-    <div>検索結果</div>
-    <form action="" method="POST">
-        <label>検索ワード：</label>
-        <input type="text" name="search_word" />　<input type="submit" value="Search" />
-    </form> -->
 
 <?php
     // var_dump ($_POST);
@@ -28,7 +16,7 @@
             $dbh = new PDO($dsn, $username, $password);
             $search_word = $_POST['search_word'];
             if($search_word==""){
-              echo "input search word";
+              echo "ワードを入れてね😅";
             }
             else{
                 // exit('ok');
@@ -40,15 +28,15 @@
                 // if($result){
                     foreach ($result as $row) {
                         
-            $output .= "
-            <tr>
-                <td>{$row["your_name"]}</td>
-                <td>{$row["country"]}</td>
-                <td>{$row["genre"]}</td>
-                <td>{$row["comments"]}</td>
-                <td>{$row["created_at"]}</td>
-            </tr>
-            ";
+                    $output .= "
+                    <tr>
+                        <td>{$row["your_name"]}</td>
+                        <td>{$row["country"]}</td>
+                        <td>{$row["genre"]}</td>
+                        <td>{$row["comments"]}</td>
+                        <td>{$row["created_at"]}</td>
+                    </tr>
+                    ";
                     }
             
 
@@ -56,6 +44,11 @@
                 // else{
                 //     echo "not found";
                 // }
+            if($result==false){
+                echo "見つかりません🤯";
+            }
+
+
         }catch (PDOException $e) {
             echo  "<p>Failed : " . $e->getMessage()."</p>";
             exit();

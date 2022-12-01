@@ -3,7 +3,7 @@
 // var_dump($_POST);
 // exit();
 
-require('board_read.php');
+require_once('board_read.php');
 
 ?>
 
