@@ -2,6 +2,7 @@
 require_once('board_read.php');
 ?>
 
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -47,13 +48,22 @@ require_once('board_read.php');
             <button>submit</bottun>
             </div>
             <div>
-            <a href="board_read.php">ボード表示</a>
+            <!-- <a href="board_read.php">ボード表示</a> -->
             </div>
         </fieldset>
     </form>
+    <div>ワード検索
+        <form action="board_search.php" method="POST"></form>
+            <input type="text" name="search_word">
+            <input type="submit" name="submit" value="送信">
+        </form>
+    </div>
+
+
     <div>
         <table>
         <?= $output ?>
+
         </table>
     </div>
 
