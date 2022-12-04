@@ -6,7 +6,7 @@ if (
     !isset($_POST['country']) || $_POST['country']=='' ||
     !isset($_POST['genre']) || $_POST['genre']==''
 ){
-    exit('ParamError');
+    exit('必要項目を入力してね');
 }
 
 $your_name = $_POST['your_name'];
@@ -51,5 +51,3 @@ try {
 
 header('Location:board_input.php');
 exit();
-?>
-

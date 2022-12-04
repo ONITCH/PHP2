@@ -1,35 +1,55 @@
 <?php
-// var_dump($_POST);
-// exit();   ok
-include_once('board_read.php');
+include('functions_connect.php');
+$pdo = connect_to_db();
+
+$id = $_GET['id'];
+
+//
+$sql = 'SELECT * FROM trip_board_table WHERE id=:id';
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':id', $id, PDO::PARAM_INT);
+try {
+    $status = $stmt->execute();
+} catch (PDOException $e) {
+    echo json_encode(["sql error" => "{$e->getMessage()}"]);
+    exit();
+}
+$record = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// $country = "";
+// foreach ($record as $country_record) {
+//     $country .= "{$country_record["country"]}";
+// }
+
+
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="ja">
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>旅先情報収集ボード</title>
-    <link rel="stylesheet" type="text/css" href="./board.css" />
+    <title>編集</title>
 </head>
 
 <body>
-    <form action="board_create.php" method="POST">
+    <form action="board_update.php" method="POST">
         <fieldset>
             <legend>旅先情報収集ボード</legend>
             <!-- 読み込みどこでする？ -->
+            <a href="board_read.php"></a>
             <table>
                 <tr>
                     <td>NAME:</td>
-                    <td><input type="text" name="your_name"></td>
+                    <td><input type="text" name="your_name" value="<?= $record['your_name'] ?>"></td>
                 </tr>
                 <tr>
                     <td>国:</td>
                     <td>
                         <select type="text" name="country">
+                            <option value="<?= $record['country'] ?>"><?= $record['country'] ?></option>
                             <option value="インド">インド</option>
                             <option value="タイ">タイ</option>
                             <option value="　">　</option>
@@ -40,6 +60,7 @@ include_once('board_read.php');
                     <td>ジャンル</td>
                     <td>
                         <select type="text" name="genre">
+                            <option value="<?= $record['genre'] ?>"><?= $record['genre'] ?></option>
                             <option value="#生活・人">生活・人</option>
                             <option value="#食べるべき">これは食べるべき</option>
                             <option value="#気候・服装">気候・服装</option>
@@ -55,7 +76,10 @@ include_once('board_read.php');
                 </tr>
                 <tr>
                     <td>コメント:</td>
-                    <td><textarea type="text" name="comments"></textarea></td>
+                    <td><textarea type="text" name="comments" value="<?= $record['comments'] ?>"><?= $record['comments'] ?></textarea></td>
+                </tr>
+                <tr>
+                    <input type="hidden" name="id" value="<?= $record['id'] ?>"></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -65,22 +89,6 @@ include_once('board_read.php');
             </table>
         </fieldset>
     </form>
-    <div>ワード検索
-        <form action="board_search.php" method="POST">
-            <input type="text" name="search_word">
-            <input type="submit" name="submit" value="送信">
-        </form>
-    </div>
-
-
-    <div>
-        <table>
-            <?= $output ?>
-
-        </table>
-    </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </body>
 
