@@ -1,12 +1,12 @@
 <?php
 //POSTデータを確認する
 if (
-    !isset($_POST['your_name']) || $_POST['your_name']=='' ||
-    !isset($_POST['comments']) || $_POST['comments']=='' ||
-    !isset($_POST['country']) || $_POST['country']=='' ||
-    !isset($_POST['genre']) || $_POST['genre']==''
-){
-    exit('ParamError');
+    !isset($_POST['your_name']) || $_POST['your_name'] == '' ||
+    !isset($_POST['comments']) || $_POST['comments'] == '' ||
+    !isset($_POST['country']) || $_POST['country'] == '' ||
+    !isset($_POST['genre']) || $_POST['genre'] == ''
+) {
+    exit('必要項目を入力してね');
 }
 
 $your_name = $_POST['your_name'];
@@ -15,13 +15,13 @@ $country = $_POST['country'];
 $genre = $_POST['genre'];
 
 //DB接続・各種項目設定
-$dbn ='mysql:dbname=trip_board;charset=utf8mb4;port=3306;host=localhost';
+$dbn = 'mysql:dbname=trip_board;charset=utf8mb4;port=3306;host=localhost';
 $user = 'root';
 $pwd = '';
 
-try{
+try {
     $pdo = new PDO($dbn, $user, $pwd);
-} catch (PDOException $e){
+} catch (PDOException $e) {
     echo jason_encode(["db error" => "{$e->getMessage()}"]);
     exit();
 }
@@ -30,7 +30,6 @@ try{
 //SQL作成＆実行
 
 $sql = 'INSERT INTO trip_board_table(id, your_name, country, genre, comments, created_at, updated_at) VALUES (NULL, :your_name, :country, :genre, :comments, now(), now())';
-
 $stmt = $pdo->prepare($sql);
 
 //バインド変数を設定  ?????
@@ -42,7 +41,7 @@ $stmt->bindValue(':genre', $genre, PDO::PARAM_STR);
 //SQL実行（失敗するとsql error）
 try {
     $status = $stmt->execute();
-} catch (PDOException $e){
+} catch (PDOException $e) {
     echo json_encode(["sql error" => "{$e->getMessage()}"]);
     exit();
 }
@@ -51,5 +50,3 @@ try {
 
 header('Location:board_input.php');
 exit();
-?>
-
