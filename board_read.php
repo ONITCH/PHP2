@@ -10,7 +10,7 @@ try {
     exit();
 }
 
-$sql = 'SELECT * FROM trip_board_table';
+$sql = 'SELECT * FROM trip_board_table ORDER BY created_at DESC';
 $stmt = $pdo->prepare($sql);
 
 try {
@@ -43,6 +43,7 @@ foreach ($result as $record) {
         </td>
         <td>
             <a href='board_delete.php?id={$record["id"]}'>delete</a>
+        </td>
     </tr>
     ";
 }

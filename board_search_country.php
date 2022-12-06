@@ -1,18 +1,73 @@
 <?php
-// var_dump($_POST);
-// exit();   ok
-include_once('board_read.php');
+// var_dump ($_POST);
+// exit();
+include('functions_connect.php');
+//↓関数を取ってきてる
+$pdo = connect_to_db();
+
+$output = "";
+// ここから新しいさーちBYカントリー
+if ($_POST) {
+    try {
+        // $dbh = new PDO($dsn, $username, $password);
+        $search_country = $_POST['country'];
+        if ($search_country == "") {
+            echo "国を選んでね😅";
+        } else {
+            // exit('ok');
+            $sql = "SELECT * FROM trip_board_table WHERE country LIKE '%" . $search_country . "%' ORDER BY created_at DESC";
+            $sth = $pdo->prepare($sql);
+            $sth->execute();
+            $result = $sth->fetchAll();
+
+            // if($result){
+
+            if ($result == false) {
+                echo "見つかりません🤯";
+            }
+
+            foreach ($result as $row) {
+
+                $output .= "
+                    <tr>
+                        <td>{$row["your_name"]}</td>
+                        <td>{$row["country"]}</td>
+                        <td>{$row["genre"]}</td>
+                        <td>{$row["comments"]}</td>
+                        <td>{$row["created_at"]}</td>
+                        <td>
+                            <a href='board_edit.php?id={$row["id"]}'>edit</a>
+                        </td>
+                        <td>
+                            <a href='board_delete.php?id={$row["id"]}'>delete</a>
+                        </td>
+                        </tr>
+                    ";
+            }
+        }
+    } catch (PDOException $e) {
+        echo  "<p>Failed : " . $e->getMessage() . "</p>";
+        exit();
+    }
+}
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="ja">
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>旅先情報収集ボード</title>
+    <title>検索結果</title>
+</head>
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旅先情報収集ボード・サーチ画面</title>
     <link rel="stylesheet" type="text/css" href="./board.css" />
 </head>
 
@@ -51,19 +106,19 @@ include_once('board_read.php');
                     <tr>
                         <td>NAME:</td>
                         <td><input type="text" name="your_name"></td>
-                        <!-- </tr>
-                    <tr> -->
+                    </tr>
+                    <tr>
                         <td>国:</td>
                         <td>
                             <select type="text" name="country">
                                 <option value="インド">インド</option>
                                 <option value="タイ">タイ</option>
-                                <option value="エジプト">エジプト</option>
+                                <option value="　">　</option>
                             </select>
                         </td>
-                        <!-- </tr>
-                    <tr> -->
-                        <td>ジャンル:</td>
+                    </tr>
+                    <tr>
+                        <td>ジャンル</td>
                         <td>
                             <select type="text" name="genre">
                                 <option value="#生活・人">生活・人</option>
@@ -83,15 +138,9 @@ include_once('board_read.php');
                         <td>コメント:</td>
                         <td><textarea type="text" name="comments"></textarea></td>
                     </tr>
-                    <!-- <tr>
-                        <td>
-                            <p>アップロード画像</p><input type="file" name="image">
-                        </td>
-                    </tr> -->
                     <tr>
                         <td></td>
-                        <td>
-                            <button>submit</bottun>
+                        <td><button>submit</bottun>
                         </td>
                     </tr>
                 </table>
@@ -99,38 +148,25 @@ include_once('board_read.php');
         </form>
         <div>いいねカウンター
         </div>
-        <div>
+        <div>ワード検索
             <form action="board_search.php" method="POST">
-                ワード検索:<input type="text" name="search_word">
-                <input type="submit" name="submit" value="検索">
-            </form>
-            <form action="board_search_country.php" method="POST">
-                国でソート:
-                <select type="text" name="country">
-                    <option value="インド">インド</option>
-                    <option value="タイ">タイ</option>
-                    <option value="エジプト">エジプト</option>
-                </select>
-                <input type="submit" name="submit" value="ソート">
+                <input type="text" name="search_word">
+                <input type="submit" name="submit" value="送信">
             </form>
         </div>
 
 
-
         <div>
-            <table>
-                <?= $output ?>
-
-            </table>
+            <table><?= $output ?></table>
         </div>
     </div>
-
     <footer>
+
 
     </footer>
 
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </body>
 
 </html>
