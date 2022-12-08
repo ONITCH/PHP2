@@ -1,6 +1,10 @@
 <?php
+session_start();
 // var_dump($_POST);
 // exit();   ok
+include('functions_connect.php');
+check_session_id();
+
 include_once('board_read.php');
 ?>
 
@@ -17,6 +21,7 @@ include_once('board_read.php');
 </head>
 
 <body>
+    <!-- ヘッダー -->
     <header>
         <div id="header-wrapper">
             <div id="logo">
@@ -32,10 +37,10 @@ include_once('board_read.php');
                     <a href="./board_input.php">
                         <p>掲示板</p>
                     </a>
-                    <a href="">
+                    <a href="./board_login.php">
                         <p>ログイン</p>
                     </a>
-                    <a href="">
+                    <a href="./board_logout.php">
                         <p>サインアップ</p>
                     </a>
                 </div>
@@ -43,7 +48,8 @@ include_once('board_read.php');
         </div>
     </header>
     <div id="container-wrapper">
-        <form action="board_create.php" method="POST">
+        <!-- 掲示板の書き込みパート -->
+        <form action="board_create.php" method="POST" enctype="multipart/form-data">
             <fieldset>
                 <legend>旅先情報収集ボード</legend>
                 <!-- 読み込みどこでする？ -->
@@ -83,15 +89,16 @@ include_once('board_read.php');
                         <td>コメント:</td>
                         <td><textarea type="text" name="comments"></textarea></td>
                     </tr>
-                    <!-- <tr>
-                        <td>
-                            <p>アップロード画像</p><input type="file" name="image">
-                        </td>
-                    </tr> -->
+                    <!-- <form method="post" enctype="multipart/form-data"> -->
+                    <tr class="form-group">
+                        <label>画像を選択</label>
+                        <input type="file" name="image">
+                    </tr>
+                    <!-- </form> -->
                     <tr>
                         <td></td>
                         <td>
-                            <button>submit</bottun>
+                            <input type="submit" name="submit_data" value="投稿">
                         </td>
                     </tr>
                 </table>
@@ -99,24 +106,25 @@ include_once('board_read.php');
         </form>
         <div>いいねカウンター
         </div>
+        <!-- 検索パート -->
         <div>
             <form action="board_search.php" method="POST">
                 ワード検索:<input type="text" name="search_word">
                 <input type="submit" name="submit" value="検索">
             </form>
             <form action="board_search_country.php" method="POST">
-                国でソート:
+                国で絞る:
                 <select type="text" name="country">
                     <option value="インド">インド</option>
                     <option value="タイ">タイ</option>
                     <option value="エジプト">エジプト</option>
                 </select>
-                <input type="submit" name="submit" value="ソート">
+                <input type="submit" name="submit" value="国で絞る">
             </form>
         </div>
 
 
-
+        <!-- 掲示板はここ -->
         <div>
             <table>
                 <?= $output ?>

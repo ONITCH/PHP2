@@ -34,6 +34,7 @@
             </div>
         </div>
     </header>
+    <div id="container">ガイドブック</div>
 
     <footer>
 

@@ -5,6 +5,9 @@ include('functions_connect.php');
 //↓関数を取ってきてる
 $pdo = connect_to_db();
 
+session_start();
+check_session_id();
+
 $output = "";
 // ここから新しいさーちBYカントリー
 if ($_POST) {
@@ -113,7 +116,7 @@ if ($_POST) {
                             <select type="text" name="country">
                                 <option value="インド">インド</option>
                                 <option value="タイ">タイ</option>
-                                <option value="　">　</option>
+                                <option value="エジプト">エジプト</option>
                             </select>
                         </td>
                     </tr>

@@ -1,6 +1,8 @@
 <?php
 include('functions_connect.php');
 $pdo = connect_to_db();
+session_start();
+check_session_id();
 
 $id = $_GET['id'];
 

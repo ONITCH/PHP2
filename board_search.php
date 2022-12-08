@@ -5,6 +5,9 @@ include('functions_connect.php');
 //↓関数を取ってきてる
 $pdo = connect_to_db();
 
+session_start();
+check_session_id();
+
 $output = "";
 
 if ($_POST) {
