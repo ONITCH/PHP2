@@ -1,6 +1,8 @@
 <?php
 include('functions_connect.php');
 $pdo = connect_to_db();
+session_start();
+check_session_id();
 
 $id = $_GET['id'];
 
@@ -79,7 +81,7 @@ $record = $stmt->fetch(PDO::FETCH_ASSOC);
                                 <option value="<?= $record['country'] ?>"><?= $record['country'] ?></option>
                                 <option value="インド">インド</option>
                                 <option value="タイ">タイ</option>
-                                <option value="　">　</option>
+                                <option value="エジプト">エジプト</option>
                             </select>
                         </td>
                         <!-- </tr>

@@ -15,4 +15,20 @@ function connect_to_db()
 
 // include('functions_connect.php');
 // $pdo = connect_to_db();
-// これを別ファイルに持ってくる
+// session idを持っていなければログイン画面に遷移。IDの有無と最新かどうかを見て、アクセス権限を与える
+
+function check_session_id()
+{
+    if (!isset($_SESSION["session_id"]) || $_SESSION["session_id"] != session_id()) {
+        header('Location:board_login.php');
+        exit();
+    } else {
+        session_regenerate_id(true);
+        $_SESSION["session_id"] = session_id();
+    }
+}
+
+// ログインが必要なページに下記を置く
+// session_start();
+// check_session_id();
+// プラス include('functions_connect.php');

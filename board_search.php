@@ -5,6 +5,9 @@ include('functions_connect.php');
 //↓関数を取ってきてる
 $pdo = connect_to_db();
 
+session_start();
+check_session_id();
+
 $output = "";
 
 if ($_POST) {
@@ -37,6 +40,7 @@ if ($_POST) {
                         <td>{$row["genre"]}</td>
                         <td>{$row["comments"]}</td>
                         <td>{$row["created_at"]}</td>
+                        <td><img src='{$row["image_url"]}' width='120' height='120'></td>
                         <td>
                             <a href='board_edit.php?id={$row["id"]}'>edit</a>
                         </td>
@@ -98,15 +102,15 @@ if ($_POST) {
                     <a href="">
                         <p>ログイン</p>
                     </a>
-                    <a href="">
+                    <!-- <a href="">
                         <p>サインアップ</p>
-                    </a>
+                    </a> -->
                 </div>
             </div>
         </div>
     </header>
     <div id="container-wrapper">
-        <form action="board_create.php" method="POST">
+        <form id="form-wrapper" action="board_create.php" method="POST">
             <fieldset>
                 <legend>旅先情報収集ボード</legend>
                 <!-- 読み込みどこでする？ -->
@@ -121,7 +125,7 @@ if ($_POST) {
                             <select type="text" name="country">
                                 <option value="インド">インド</option>
                                 <option value="タイ">タイ</option>
-                                <option value="　">　</option>
+                                <option value="エジプト">エジプト</option>
                             </select>
                         </td>
                     </tr>
@@ -154,12 +158,22 @@ if ($_POST) {
                 </table>
             </fieldset>
         </form>
+
         <div>いいねカウンター
         </div>
         <div>ワード検索
             <form action="board_search.php" method="POST">
                 <input type="text" name="search_word">
                 <input type="submit" name="submit" value="送信">
+            </form>
+            <form action="board_search_country.php" method="POST">
+                国で絞る:
+                <select type="text" name="country">
+                    <option value="インド">インド</option>
+                    <option value="タイ">タイ</option>
+                    <option value="エジプト">エジプト</option>
+                </select>
+                <input type="submit" name="submit" value="国で絞る">
             </form>
         </div>
 

@@ -65,6 +65,9 @@ a {
 
 #container {
     background-image: url(./img/worldmap.png);
+    background-color: whitesmoke;
+    border-radius: 30px;
+    padding: 10px;
     background-size: 100% auto;
     background-repeat: no-repeat;
     width: 100%;

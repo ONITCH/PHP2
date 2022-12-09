@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <!-- ヘッダー -->
     <header>
         <div id="header-wrapper">
             <div id="logo">
@@ -18,27 +19,38 @@
             </div>
             <div id="header">
                 <div id="header-menu">
-                    <a href="">
+                    <a href="./guidebook.php">
                         <p>ガイドブック</p>
                     </a>
                     <a href="./board_input.php">
                         <p>掲示板</p>
                     </a>
-                    <a href="">
+                    <a href="./board_login.php">
                         <p>ログイン</p>
                     </a>
-                    <a href="">
+                    <!-- <a href="./board_logout.php">
                         <p>サインアップ</p>
-                    </a>
+                    </a> -->
                 </div>
             </div>
         </div>
     </header>
-    <div id="container">ガイドブック</div>
+    <div id="container-wrapper">
+        <h1>MYPAGE</h1>
+        <a href="board_input.php">
+            <p>掲示板へ</p>
+        </a>
+    </div>
+
+
+
 
     <footer>
 
     </footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
+
+</html>

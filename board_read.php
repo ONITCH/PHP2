@@ -6,7 +6,7 @@ $pwd = '';
 try {
     $pdo = new PDO($dbn, $user, $pwd);
 } catch (PDOException $e) {
-    echo jason_encode(["db error" => "{$e->getMessage()}"]);
+    echo json_encode(["db error" => "{$e->getMessage()}"]);
     exit();
 }
 
@@ -33,11 +33,12 @@ $output = "";
 foreach ($result as $record) {
     $output .= "
     <tr>
-        <td>{$record["your_name"]}</td>
-        <td>{$record["country"]}</td>
-        <td>{$record["genre"]}</td>
-        <td>{$record["comments"]}</td>
-        <td>{$record["created_at"]}</td>
+        <td class='result_your_name'>{$record["your_name"]}</td>
+        <td class='result_country'>{$record["country"]}</td>
+        <td class='result_genre'>{$record["genre"]}</td>
+        <td class='result_comments'>{$record["comments"]}</td>
+        <td class='result_created_at'>{$record["created_at"]}</td>
+        <td><img src='{$record["image_url"]}' width='120' height='120'></td>
         <td>
             <a href='board_edit.php?id={$record["id"]}'>edit</a>
         </td>
@@ -47,7 +48,7 @@ foreach ($result as $record) {
     </tr>
     ";
 }
-
+// 
 ?>
 
 <!-- inputにそのままデータを送るのでこれはDBからの読み込み専用。 -->
