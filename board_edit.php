@@ -81,7 +81,7 @@ $record = $stmt->fetch(PDO::FETCH_ASSOC);
                                 <option value="<?= $record['country'] ?>"><?= $record['country'] ?></option>
                                 <option value="インド">インド</option>
                                 <option value="タイ">タイ</option>
-                                <option value="　">　</option>
+                                <option value="エジプト">エジプト</option>
                             </select>
                         </td>
                         <!-- </tr>

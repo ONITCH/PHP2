@@ -9,41 +9,6 @@ if (
     exit('必要項目を入力してね');
 }
 
-// // データベース設定ファイルを含む
-// $statusMsg = '';
-
-// // ファイルのアップロード先
-// $targetDir = "img/";
-// $fileName = basename($_FILES["up_image"]["name"]);
-// $targetFilePath = $targetDir . $fileName;
-// $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
-
-// if (isset($_POST["up_image"]) && !empty($_FILES["up_image"]["name"])) {
-//     // 特定のファイル形式の許可
-//     $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
-//     if (in_array($fileType, $allowTypes)) {
-//         // サーバーにファイルをアップロード
-//         if (move_uploaded_file($_FILES["up_image"]["tmp_name"], $targetFilePath)) {
-//             // データベースに画像ファイル名を挿入
-//             $insert = $db->query("INSERT into trip_board_table (file_name) VALUES ('" . $fileName . "')");
-//             if ($insert) {
-//                 $statusMsg = " " . $fileName . " が正常にアップロードされました";
-//             } else {
-//                 $statusMsg = "ファイルのアップロードに失敗しました、もう一度お試しください";
-//             }
-//         } else {
-//             $statusMsg = "申し訳ありませんが、ファイルのアップロードに失敗しました";
-//         }
-//     } else {
-//         $statusMsg = '申し訳ありませんが、アップロード可能なファイル（形式）は、JPG、JPEG、PNG、GIFのみです';
-//     }
-// } else {
-//     $statusMsg = 'アップロードするファイルを選択してください';
-// }
-
-// // ステータスメッセージを表示
-// echo $statusMsg;
-
 
 //画像の処理
 if (!isset($_POST["image"]) || $_POST["image"] == "") {
@@ -53,7 +18,7 @@ if (!isset($_POST["image"]) || $_POST["image"] == "") {
         // $_FILES['image']['name']もとのファイルの名前
         // $_FILES['image']['tmp_name']サーバーにある一時ファイルの名前
         $filename = uniqid() . $_FILES['image']['name'];
-        $uploaded_path = 'img/' . $filename;
+        $uploaded_path = './img/' . $filename;
 
         $result = move_uploaded_file($_FILES['image']['tmp_name'], $uploaded_path);
 
@@ -69,7 +34,8 @@ if (!isset($_POST["image"]) || $_POST["image"] == "") {
     echo $MSG;
 }
 
-
+// var_dump($image_url);
+// exit();
 
 $your_name = $_POST['your_name'];
 $comments = $_POST['comments'];
@@ -86,7 +52,7 @@ $pwd = '';
 try {
     $pdo = new PDO($dbn, $user, $pwd);
 } catch (PDOException $e) {
-    echo jason_encode(["db error" => "{$e->getMessage()}"]);
+    echo json_encode(["db error" => "{$e->getMessage()}"]);
     exit();
 }
 //[dbError:...]が表示されたらDBでエラー発生
@@ -108,7 +74,6 @@ $stmt->bindValue(':your_name', $your_name, PDO::PARAM_STR);
 $stmt->bindValue(':comments', $comments, PDO::PARAM_STR);
 $stmt->bindValue(':country', $country, PDO::PARAM_STR);
 $stmt->bindValue(':genre', $genre, PDO::PARAM_STR);
-// $stmt->bindValue(':image', $image, PDO::PARAM_STR);
 
 //SQL実行（失敗するとsql error）
 try {

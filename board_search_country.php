@@ -38,6 +38,7 @@ if ($_POST) {
                         <td>{$row["genre"]}</td>
                         <td>{$row["comments"]}</td>
                         <td>{$row["created_at"]}</td>
+                        <td><img src='{$row["image_url"]}' width='120' height='120'></td>
                         <td>
                             <a href='board_edit.php?id={$row["id"]}'>edit</a>
                         </td>
@@ -155,6 +156,15 @@ if ($_POST) {
             <form action="board_search.php" method="POST">
                 <input type="text" name="search_word">
                 <input type="submit" name="submit" value="送信">
+            </form>
+            <form action="board_search_country.php" method="POST">
+                国で絞る:
+                <select type="text" name="country">
+                    <option value="インド">インド</option>
+                    <option value="タイ">タイ</option>
+                    <option value="エジプト">エジプト</option>
+                </select>
+                <input type="submit" name="submit" value="国で絞る">
             </form>
         </div>
 

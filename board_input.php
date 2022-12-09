@@ -40,9 +40,9 @@ include_once('board_read.php');
                     <a href="./board_login.php">
                         <p>ログイン</p>
                     </a>
-                    <a href="./board_logout.php">
+                    <!-- <a href="./board_logout.php">
                         <p>サインアップ</p>
-                    </a>
+                    </a> -->
                 </div>
             </div>
         </div>

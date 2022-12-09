@@ -30,8 +30,8 @@
                     <a href="./board_login.php">
                         <p>ログイン</p>
                     </a>
-                    <!-- <a href="./board_logout.php">
-                        <p>ログアウト</p> -->
+                    <a href="./board_logout.php">
+                        <p>ログアウト</p>
                     </a>
                 </div>
             </div>
