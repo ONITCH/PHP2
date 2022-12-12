@@ -14,26 +14,20 @@ if ($_POST) {
     // var_dump ($_POST['search_word']);
     // exit();
     try {
-        // $dbh = new PDO($dsn, $username, $password);
-        $search_word = $_POST['search_word'];
-        if ($search_word == "") {
-            echo "ワードを入れてね😅";
-        } else {
-            // exit('ok');
-            $sql = "SELECT * FROM trip_board_table WHERE comments LIKE '%" . $search_word . "%' ORDER BY created_at DESC";
-            $sth = $pdo->prepare($sql);
-            $sth->execute();
-            $result = $sth->fetchAll();
+        $sql = "SELECT * FROM trip_board_table WHERE comments LIKE '%" . $search_word . "%' ORDER BY created_at DESC";
+        $sth = $pdo->prepare($sql);
+        $sth->execute();
+        $result = $sth->fetchAll();
 
-            // if($result){
+        // if($result){
 
-            if ($result == false) {
-                echo "見つかりません🤯";
-            }
+        if ($result == false) {
+            echo "見つかりません🤯";
+        }
 
-            foreach ($result as $row) {
+        foreach ($result as $row) {
 
-                $output .= "
+            $output .= "
                     <tr>
                         <td>{$row["your_name"]}</td>
                         <td>{$row["country"]}</td>
@@ -49,7 +43,6 @@ if ($_POST) {
                         </td>
                         </tr>
                     ";
-            }
         }
     } catch (PDOException $e) {
         echo  "<p>Failed : " . $e->getMessage() . "</p>";
@@ -72,6 +65,9 @@ if ($_POST) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>検索結果</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 </head>
 <!DOCTYPE html>
 <html lang="ja">
@@ -149,6 +145,10 @@ if ($_POST) {
                     <tr>
                         <td>コメント:</td>
                         <td><textarea type="text" name="comments"></textarea></td>
+                    </tr>
+                    <tr class="form-group">
+                        <label>画像を選択</label>
+                        <input type="file" name="image">
                     </tr>
                     <tr>
                         <td></td>

@@ -1,11 +1,15 @@
 <?php
+include('functions_connect.php');
 session_start();
 // var_dump($_POST);
 // exit();   ok
-include('functions_connect.php');
-check_session_id();
 
-include_once('board_read.php');
+check_session_id();
+$username = $_SESSION['username'];
+
+
+
+
 ?>
 
 
@@ -18,6 +22,11 @@ include_once('board_read.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>旅先情報収集ボード</title>
     <link rel="stylesheet" type="text/css" href="./board.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Potta+One&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
@@ -26,7 +35,7 @@ include_once('board_read.php');
         <div id="header-wrapper">
             <div id="logo">
                 <a href="./index.php">
-                    <p>ロゴ</p>
+                    <p id="logo">TABIMEMO</p>
                 </a>
             </div>
             <div id="header">
@@ -37,8 +46,8 @@ include_once('board_read.php');
                     <a href="./board_input.php">
                         <p>掲示板</p>
                     </a>
-                    <a href="./board_login.php">
-                        <p>ログイン</p>
+                    <a href="./board_mypage.php">
+                        <p>マイページ</p>
                     </a>
                     <!-- <a href="./board_logout.php">
                         <p>サインアップ</p>
@@ -49,16 +58,18 @@ include_once('board_read.php');
     </header>
     <div id="container-wrapper">
         <!-- 掲示板の書き込みパート -->
+        <h1>みんなのTABIのMEMO</h1>
         <form action="board_create.php" method="POST" enctype="multipart/form-data">
             <fieldset>
-                <legend>旅先情報収集ボード</legend>
+                <legend><?= $username ?>さんも書き込んでみよう！</legend>
                 <!-- 読み込みどこでする？ -->
                 <table>
                     <tr>
                         <td>NAME:</td>
-                        <td><input type="text" name="your_name"></td>
-                        <!-- </tr>
-                    <tr> -->
+                        <td>
+                            <input type="text" name="your_name" value="<?= $username ?>さん" readonly>
+                        </td>
+
                         <td>国:</td>
                         <td>
                             <select type="text" name="country">
@@ -67,8 +78,7 @@ include_once('board_read.php');
                                 <option value="エジプト">エジプト</option>
                             </select>
                         </td>
-                        <!-- </tr>
-                    <tr> -->
+
                         <td>ジャンル:</td>
                         <td>
                             <select type="text" name="genre">
@@ -87,12 +97,13 @@ include_once('board_read.php');
                     </tr>
                     <tr>
                         <td>コメント:</td>
-                        <td><textarea type="text" name="comments"></textarea></td>
+                        <td colspan="5"><textarea type="text" name="comments"></textarea></td>
                     </tr>
                     <!-- <form method="post" enctype="multipart/form-data"> -->
                     <tr class="form-group">
-                        <label>画像を選択</label>
-                        <input type="file" name="image">
+                        <td><label>画像を選択</label></td>
+                        <td colspan="3"><input type="file" name="image"></td>
+                        <td colspan="3"></td>
                     </tr>
                     <!-- </form> -->
                     <tr>
@@ -104,16 +115,14 @@ include_once('board_read.php');
                 </table>
             </fieldset>
         </form>
-        <div>いいねカウンター
-        </div>
         <!-- 検索パート -->
-        <div>
+        <div id="search">
             <form action="board_search.php" method="POST">
                 ワード検索:<input type="text" name="search_word">
                 <input type="submit" name="submit" value="検索">
             </form>
             <form action="board_search_country.php" method="POST">
-                国で絞る:
+                　　国で絞る:
                 <select type="text" name="country">
                     <option value="インド">インド</option>
                     <option value="タイ">タイ</option>
@@ -125,11 +134,11 @@ include_once('board_read.php');
 
 
         <!-- 掲示板はここ -->
+        <?php
+        include_once('board_read.php');
+        ?>
         <div>
-            <table>
-                <?= $output ?>
-
-            </table>
+            <?= $output ?>
         </div>
     </div>
 

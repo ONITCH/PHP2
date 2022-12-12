@@ -8,7 +8,7 @@ body {
     margin: 0 auto;
     max-width: 1000px;
     /* width: 100%; */
-    background-color: rgb(255, 200, 0);
+    background-color: rgb(222, 212, 203);
 }
 
 /* ヘッダ */
@@ -21,16 +21,23 @@ header {
 }
 
 #header-wrapper {
-    background-color: rgb(255, 200, 0);
+    background-color: rgb(181, 149, 123);
     width: 100%;
     height: 80px;
     position: fixed;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    z-index: 1;
 }
 
-#logo {}
+#logo p {
+    font-family: 'Potta One', cursive;
+    font-size: 25px;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: rgb(2, 2, 2);
+    -webkit-text-fill-color: rgb(255, 255, 255);
+}
 
 
 #header {
@@ -40,6 +47,7 @@ header {
 
 #header-menu {
     display: flex;
+    margin-right: 20px;
 
 }
 
@@ -57,21 +65,19 @@ a {
 #container-wrapper {
     width: 100%;
     display: flex;
-    /* justify-content: center;
-    flex-direction: column;
-    align-items: center; */
-    margin-top: 80px;
+    margin-top: 100px;
+
 }
 
 #container {
-    background-image: url(./img/worldmap.png);
+    background-image: url(./img2/worldmap.png);
     background-color: whitesmoke;
     border-radius: 30px;
     padding: 10px;
     background-size: 100% auto;
     background-repeat: no-repeat;
     width: 100%;
-    height: 700px;
+    height: 620px;
     /* background-color: whitesmoke; */
 
 }
@@ -81,11 +87,41 @@ a {
 #img {}
 
 h1 {
-    margin-top: 10px;
-    margin-left: 10px;
+    /* margin-top: 10px;
+    margin-left: 10px; */
     font-size: 3rem;
+    position: relative;
+    padding-top: 100px;
+    text-align: center;
+    font-family: 'Potta One', cursive;
+
 }
 
+h2 {
+    text-align: center;
+    /* padding-top: 1px; */
+    font-size: 100px;
+    position: relative;
+    font-family: 'Potta One', cursive;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: rgb(2, 2, 2);
+    -webkit-text-fill-color: rgb(226, 125, 125);
+    margin-top: 10px;
+}
+
+.countries {
+    display: flex;
+    justify-content: center;
+}
+
+h3 {
+    font-size: 60px;
+    position: relative;
+    padding-top: 100px;
+    text-align: center;
+    font-family: 'Potta One', cursive;
+
+}
 
 #guide {
     /* display: flex;
