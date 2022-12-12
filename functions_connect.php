@@ -29,6 +29,6 @@ function check_session_id()
 }
 
 // ログインが必要なページに下記を置く
+// include('functions_connect.php');
 // session_start();
 // check_session_id();
-// プラス include('functions_connect.php');

@@ -24,16 +24,19 @@ try {
 
 // ユーザーの有無で条件分岐
 $val = $stmt->fetch(PDO::FETCH_ASSOC);
+// var_dump($val);
+// exit();
 if (!$val) {
     echo "<p>ログイン情報に誤りがあります</p>";
     echo "<a href=board_login.php>ログイン</a>";
     exit();
 } else {
-    // 成功したとき 🌟ここで色々設定できそう？ 名前をページに表示させたり？
+    // 成功したとき 🌟ここで色々設定できそう？ 名前をページに表示させたり？ userid=idにここで結び付けてる？？？
     $_SESSION = array();
+    $_SESSION['user_id'] = $val['id'];
     $_SESSION['session_id'] = session_id();
     $_SESSION['is_admin'] = $val['is_admin'];
     $_SESSION['username'] = $val['username'];
-    header("Location:board_input.php");
+    header("Location:board_mypage.php");
     exit();
 }

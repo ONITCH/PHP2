@@ -16,5 +16,5 @@ try {
     exit();
 }
 
-header("Location:board_input.php");
+header("Location:board_mypage.php");
 exit();

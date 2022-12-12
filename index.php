@@ -10,13 +10,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Potta+One&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
     <header>
         <div id="header-wrapper">
             <div id="logo">
-                <p>ロゴ</p>
+                <p>TABIMEMO</p>
             </div>
             <div id="header">
                 <div id="header-menu">
@@ -30,9 +32,9 @@
                     <a href="./board_login.php">
                         <p>ログイン</p>
                     </a>
-                    <a href="./board_logout.php">
+                    <!-- <a href="./board_logout.php">
                         <p>ログアウト</p>
-                    </a>
+                    </a> -->
                 </div>
             </div>
         </div>
@@ -41,24 +43,10 @@
         <div id="container">
             <div id="container-top">
                 <div id="title">
-                    <h1>＃みんなで作る旅ガイド</h1>
+                    <h1>＃みんなで作る旅ガイドブック</h1>
                     <h2>TABIMEMO</h2>
+                    <h3>🇮🇳　　🇪🇬　　🇹🇭</h3>
                 </div>
-                <!-- <img id="map" src="img/worldmap.png" alt=""> -->
-
-                <!-- <div id="guide">
-                    <div>
-                        <a class="guide-p" href="">
-                            <p>これ何？</p>
-                        </a>
-                        <a class="guide-p" href="">
-                            <p>使い方</p>
-                        </a>
-                        <a class="guide-p" href="">
-                            <p>ガイドブック</p>
-                        </a>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>

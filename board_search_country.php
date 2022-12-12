@@ -63,6 +63,9 @@ if ($_POST) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
     <title>検索結果</title>
 </head>
 <!DOCTYPE html>
@@ -141,6 +144,10 @@ if ($_POST) {
                     <tr>
                         <td>コメント:</td>
                         <td><textarea type="text" name="comments"></textarea></td>
+                    </tr>
+                    <tr class="form-group">
+                        <label>画像を選択</label>
+                        <input type="file" name="image">
                     </tr>
                     <tr>
                         <td></td>

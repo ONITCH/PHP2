@@ -35,6 +35,11 @@ $record = $stmt->fetch(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>編集</title>
     <link rel="stylesheet" type="text/css" href="./board.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Potta+One&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
@@ -42,7 +47,7 @@ $record = $stmt->fetch(PDO::FETCH_ASSOC);
         <div id="header-wrapper">
             <div id="logo">
                 <a href="./index.php">
-                    <p>ロゴ</p>
+                    <p id="logo">TABIMEMO</p>
                 </a>
             </div>
             <div id="header">
@@ -53,12 +58,12 @@ $record = $stmt->fetch(PDO::FETCH_ASSOC);
                     <a href="./board_input.php">
                         <p>掲示板</p>
                     </a>
-                    <a href="">
-                        <p>ログイン</p>
+                    <a href="./board_mypage.php">
+                        <p>マイページ</p>
                     </a>
-                    <a href="">
+                    <!-- <a href="">
                         <p>サインアップ</p>
-                    </a>
+                    </a> -->
                 </div>
             </div>
         </div>
@@ -72,7 +77,7 @@ $record = $stmt->fetch(PDO::FETCH_ASSOC);
                 <table>
                     <tr>
                         <td>NAME:</td>
-                        <td><input type="text" name="your_name" value="<?= $record['your_name'] ?>"></td>
+                        <td> <input type="text" name="your_name" value="<?= $record['your_name'] ?>" readonly></td>
                         <!-- </tr>
                     <tr> -->
                         <td>国:</td>
@@ -105,10 +110,14 @@ $record = $stmt->fetch(PDO::FETCH_ASSOC);
                     </tr>
                     <tr>
                         <td>コメント:</td>
-                        <td><textarea type="text" name="comments" value="<?= $record['comments'] ?>"><?= $record['comments'] ?></textarea></td>
+                        <td colspan="5"><textarea type="text" name="comments" value="<?= $record['comments'] ?>"><?= $record['comments'] ?></textarea></td>
                     </tr>
                     <tr>
                         <input type="hidden" name="id" value="<?= $record['id'] ?>"></td>
+                    </tr>
+                    <tr class="form-group">
+                        <td><label>画像を選択</label></td>
+                        <td><input type="file" name="image"></td>
                     </tr>
                     <tr>
                         <td></td>
